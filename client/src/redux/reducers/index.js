@@ -18,7 +18,8 @@ import {
     IS_SHOW_IS_SIGNUP_MODAL,
     CURRENT_ID,
     IS_LOGIN_ALERT,
-    MEETING_PLACE_HANDLER
+    MEETING_PLACE_HANDLER,
+    CURRENT_USER_LIST_HANDLER
 
 } from '../actions/actions';
 import { initialState } from './initialState';
@@ -41,6 +42,7 @@ const rootReducer = combineReducers({
     isCurrentIdReducer,
     isLoginAlertReducer,
     meetingPlaceReducer,
+    currentUserListReducer
 })
 
 function isLoginReducer(state = initialState.isLogin, action) {
@@ -203,6 +205,13 @@ function isCurrentIdReducer(state = initialState.isCurrentIdHandler, action){
       case MEETING_PLACE_HANDLER :
         return {...state,...action.payload}
       default : return state
+    }
+  }
+  function currentUserListReducer(state = initialState.currentUserList, action) {
+    switch (action.type) {
+      case CURRENT_USER_LIST_HANDLER :
+        return [...state, ...action.payload]
+      default: return state;
     }
   }
 

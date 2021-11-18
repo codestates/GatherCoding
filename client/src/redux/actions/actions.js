@@ -17,6 +17,7 @@ export const IS_SHOW_IS_SIGNUP_MODAL = "IS_SHOW_IS_SIGNUP_MODAL";
 export const CURRENT_ID = "CURRENT_ID";
 export const IS_LOGIN_ALERT ="IS_LOGIN_ALERT";
 export const MEETING_PLACE_HANDLER = "MEETING_PLACE_HANDLER";
+export const CURRENT_USER_LIST_HANDLER = "CURRENT_USER_LIST_HANDLER";
 
 export function isLoginHandler (boolean) {
     return {
@@ -169,5 +170,11 @@ export function meetingPlaceHandler (obj) {
     return {
         type : MEETING_PLACE_HANDLER,
         payload : obj
+    }
+}
+export function isCurrentUserListHandler (arr) {
+    return {
+        type: CURRENT_USER_LIST_HANDLER,
+        payload: arr
     }
 }

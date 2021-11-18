@@ -1,5 +1,6 @@
 .userlist-page {
     background: #706d6dbb;
+    z-index: -8;
     display: flex;
     margin-left: auto;
     margin-right: auto;
@@ -19,11 +20,15 @@
 }
 .userlist-page img {
     
+    background:url('../images/default_profile2.png') center no-repeat ;
+    background: cover;
+
+
     border-radius:70%;
     width: 100px;
     height: 100%;
     margin: auto;
-    
+    object-fit: cover;
 }
 
 .userlist-page .userlist-username {

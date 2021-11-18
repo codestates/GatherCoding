@@ -100,9 +100,10 @@ const Map = ({ title ,meetingTime ,population, description }) => {
           headers:{contentType:"application/json",withCredentials:"true",Authorization : `Bearer ${cookies.accessToken}`}
         })
         .then(res=>{
-          dispatch(isLoadingHandler(true))
+          
           
           history.push(`/roominfo/${res.data.data.id}`)
+          dispatch(isLoadingHandler(true))
           dispatch(isShowCreateRoomModalHandler(false))
           console.log(res.data.data.id)
           return res
@@ -112,9 +113,10 @@ const Map = ({ title ,meetingTime ,population, description }) => {
           console.log({id,title,description,population,UserId,region,city,meetingPlace})
           console.log('여긴와?')
 
-        //   axios.get('http://localhost:4000/rooms/new-room',{id,title,description,population,UserId,region,city,meetingPlace},
+        //   axios.post('http://localhost:4000/rooms/room-entry',
+        //   {roomTitle:title},
         //     {headers:{withCredentials:"true", Authorization : `Bearer ${cookies.accessToken}`, contentType:"application/json"}}
-        // ).then(res=>{
+        // ).then(res=>{console.log(res.data.data)
         // })
         dispatch(isLoadingHandler(false))
       }) 

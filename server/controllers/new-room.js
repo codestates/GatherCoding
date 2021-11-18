@@ -24,7 +24,7 @@ module.exports = {
         
         const {id,title,description,population,region,city,UserId,leader_id,meeting_time,meeting_place}=newRoom
         // if(!accessTokenData){res.status(401).json({message:'unauthorized'})}
-        console.log(newRoom)
+        // console.log(newRoom)
         // else{
            return res.status(201).json({data : newRoom, message : "new room's created" })
         // }
@@ -58,7 +58,7 @@ module.exports = {
     post: async (req, res) => {
         console.log(req.headers.authorization.split(' ')[1])
 
-        console.log('리코그바디',req.body)
+        // console.log('리코그바디',req.body)
 
 
         const accessTokenData = token.isAuthorized(req.headers.authorization.split(' ')[1]);
@@ -78,7 +78,7 @@ module.exports = {
                 region, 
                 city,
             });
-            console.log(newRoom.dataValues)
+            // console.log(newRoom.dataValues)
             
             res.status(201).json({
                 data: {

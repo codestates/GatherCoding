@@ -6,8 +6,8 @@ module.exports = {
         res.send("Hello World");
     },
     get: async (req, res) => {
-        console.log('씨티',req.query.city)
-        console.log('도',req.query.region)
+        // console.log('씨티',req.query.city)
+        // console.log('도',req.query.region)
         const region = req.query.region;
         const city = req.query.city;
         if (!region || !city) {
@@ -69,7 +69,7 @@ module.exports = {
                     if (result.length === 0) {
                         res.status(200).json({ data: null, message: 'no room in this location' })
                     } else {
-                        console.log(result.length)
+                        // console.log(result.length)
                         res.status(200).json({ data: result, message: 'ok' });
                     }
                 })

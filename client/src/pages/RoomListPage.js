@@ -52,13 +52,13 @@ function RoomListPage() {
                                 onClick = {showLoginModalHandler} >모각코 만들기</button>}
                     </div>    
                     <div className = 'common-room-component-list'>
-                        
+                    {/* history.push(`/roominfo/${res.data.data.id}`) */}
                         {/* <RoomList /> */}
                         {myRoomList!==null ? myRoomList.filter(el=>el.city===city&&el.region===region)
                         .map((group,idx) => {
                             return (
                                 <div className = 'common-room-box' key ={idx}>
-                                    {isLogin ? <Link to = '/roominfo'><Room group = {group} idx = {idx}/></Link>
+                                    {isLogin ? <Link to = {`/roominfo/${group.id}`}><Room group = {group} idx = {idx}/></Link>
                                     : <Room onClick = {showLoginModalHandler} group = {group} idx = {idx}/>
                                     }
                                 </div>    

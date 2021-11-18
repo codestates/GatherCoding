@@ -6,12 +6,12 @@ const { Op } = require("sequelize");
 
 module.exports = {
     get: (req, res) => {
-        const city = req.query.city;
-        const accessToken = req.cookies.accessToken;
+        // const city = req.query.city;
+        const accessToken = req.headers.authorization.split(' ')[1]
         // const accessToken = req.headers.authorization.split(' ')[1];
         // const accessToken = req.body.accessToken;
         const userId = token.isAuthorized(accessToken).email || token.isAuthorized(accessToken).username;
-
+        console.log('뙜나??',req.cookies)
         // const { Op } = require("sequelize");
         // Post.findAll({
         //     where: {

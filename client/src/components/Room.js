@@ -3,7 +3,7 @@ import React from 'react'
 
 import '../css/room.css';
 function Room({onClick, group, idx}) {
-    
+    // console.log(group)
     return (
     <div className="room-list-container">      
             <div className="shadow_eff"></div>

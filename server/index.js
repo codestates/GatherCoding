@@ -32,10 +32,10 @@ app.use(
   cors({
     origin: ["http://localhost:3000"],
     credentials: true,
-    methods: ["GET", "POST", "OPTIONS", "DELETE", "PUT"],
+    methods: ["GET", "POST", "OPTIONS", "DELETE", "PUT", "PATCH"],
   })
 );
-app.use(cookieParser());
+app.use(cookieParser({ sameSite: "none", secure: true }));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

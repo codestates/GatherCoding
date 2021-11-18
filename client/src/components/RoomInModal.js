@@ -2,19 +2,25 @@ import React from 'react'
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from "axios";
-import { isLoginHandler, isShowRoomInModalHandler } from '../redux/actions/actions';
-
+import { isCurrentUserListHandler, isShowRoomInModalHandler } from '../redux/actions/actions';
+import UserList from './UserList';
 import '../css/roomInModal.css'
+import { withCookies, Cookies, useCookies } from 'react-cookie';
 
 function RoomInModal() {
     const dispatch = useDispatch()
 
     // const [loginId, setLoginId] = useState('');
     // const [loginPw, setLoginPw] = useState('')
-
+    const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
+    console.log(cookies)
+    console.log('JWT : ',cookies.jwt)
+    console.log('액세스토큰 : ', cookies.accessToken)
     const closeRoomInModalHandler = () => { dispatch(isShowRoomInModalHandler(false)) };
+    const currentUserListHandler = (arr) => { dispatch(isCurrentUserListHandler(arr))};
+    
 
-    function roomInRequest(e) { // 방 나가기 요청 함수
+    async function roomInRequest(e) { // 방 참여하기 요청 함수
         e.preventDefault();
 
         const body = {
@@ -22,24 +28,38 @@ function RoomInModal() {
             // email: loginId,
             // password: loginPw,
             id: 'dummyId',
-            title: 'dummyTitle',
+            roomTitle: 'dummyTitle',
             headrs: {
                 'contente-type': 'application/json'
             }
         }
+        // const conf = {
+        //     headrs: {
+        //         'contente-type': 'application/json',
+        //         ''
+        //     },
+        //     withCredentials: true
+        // }
         // API가 조금 수정되어야 할 듯. 
         // delete 메소드 -> put 메소드
         // delete-room -> room-exit
         // response 적절하게 추가
-        axios.delete(`https://localhost:4000/rooms/delete-room`, body)
+        return axios.post(`http://localhost:4000/rooms/room-entry`, body, 
+        {headers:{contentType:"application/json",withCredentials:"true",Authorization : `Bearer ${cookies.accessToken}`}})
             .then(res => {
                 if (res.status === 200) { // 잘받아오면
                     // dispatch()
                     // ???
+                    const userInfoArray = res.data.data;
+                    console.log(userInfoArray, 'RoomIn버튼확인용');
+                    
+                    currentUserListHandler(userInfoArray);
+                    closeRoomInModalHandler();
                 }
             }).catch(err => {
                 if (err) {
                     // 실패했다고 떠야 될 듯. alert 같은 것으로?
+                    console.log(err);
                 }
             })
     }
