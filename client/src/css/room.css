@@ -1,7 +1,71 @@
-.roomListPage-room{
-    margin: 20px;
-    border-radius: 10px;
-    border : 1px gray solid;
-    padding : 10px;
-    width : 400px;
+.room-list-container{
+    position: relative;
+    width: 500px;
+    height: 220px;
+    margin-bottom: 20px;
 }
+
+.roomListPage-room{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    margin: 20px;
+    border : none;
+    padding : 10px;
+    background: #EFECC9;
+    z-index: 10;
+    box-sizing: border-box;
+    transition: all .3s;
+    color: rgb(1, 44, 1);
+}
+
+.roomListPage-room:hover{background: #e2deb2;}
+.roomListPage-room > .room-name{position: absolute; top: 20px; left: 20px; font-size: 18px; font-weight: 700;}
+.roomListPage-room > .room-people{position: absolute; top: 50px; left: 50%; transform: translateX(-50%); font-size: 16px;}
+.roomListPage-room > .room-locate{position: absolute; top: 90px; left: 50%; transform: translateX(-50%); font-size: 18px;}
+.roomListPage-room > .room-time{position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); font-size: 18px;}
+
+.shadow_eff{background:#EFECCA; color:#002F2F; position:relative; height: 200px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 20px;
+    border : none;
+    padding : 10px;
+    background: #EFECC9;
+    z-index: 10;
+    box-sizing: border-box;
+}
+.shadow_eff::before, .shadow_eff::after{
+  z-index: 1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 5px;
+  width: 48%;
+  top: 80%;
+  background: #000;
+  box-shadow: 0 20px 15px #000;
+  transform: rotate(-5deg);
+}
+.shadow_eff::after{
+transform: rotate(5deg);
+  right: 5px;
+  left: auto;
+  transition: all .3s;
+}
+.roomListPage-page .roomListPage-main{padding: 0 120px;}
+.roomListPage-page .common-room-component-list{display: flex; flex-wrap: wrap; justify-content: space-between;} 
+.roomListPage-page .common-room-component-list .common-room-box{width: 43%;}
+.roomListPage-page .common-room-component-list .common-room-box > a{width: 100%;}
+.roomListPage-page .common-room-component-list .common-room-box > a > .room-list-container{width: 100%;}
+.roomListPage-page .common-room-component-list .common-room-box > a > .room-list-container .shadow_eff{margin: 0; width: 100%;}
+.roomListPage-page .common-room-box>a > .room-list-container>.roomListPage-room{width: 100%; margin: 0;}
+.roomListPage-page .common-room-box>a > .room-list-container>.roomListPage-room>.room-name{}
+.roomListPage-page .common-room-box>a > .room-list-container>.roomListPage-room>.room-people{}
+.roomListPage-page .common-room-box>a > .room-list-container>.roomListPage-room>.room-locate{}
+.roomListPage-page .common-room-box>a > .room-list-container>.roomListPage-room>.room-time{}

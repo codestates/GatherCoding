@@ -40,55 +40,53 @@ function RoomInfo({ match }) {
 
     }, [pathname]);
     return (
-        <div>
-            <div className='roominfo-page'>
+        <div className="roominfo-background">
+            <div className="roominfo-container">
                 <div className='roominfo-map'>
                     {/* <MapPick /> */}
                     <MapInRoom meeting_place={roomInforma.meeting_place}/>
                 </div>
-                <div className='roominfo-info-div'>
-                    <div className='roominfo-meeting-time'>
-                        약속 시간 : {roomInforma.meeting_time}
-                    </div>
+                <div className='roominfo-page'>
+                    <div className='roominfo-info-div'>
+                        <div className="roominfo-info-box">
+                            <div className="blue-screen">
+                            <h2>방제목: {roomInforma.title}</h2>
+                            <div className='roominfo-info-outer'>
+                                <p>약속 시간 : {roomInforma.meeting_time}</p>
+                                <div className="roominfo-description">
+                                    코딩해야지 코딩해야지 반복하다 <br />
+                                    결국 자버리는 분들 <br /><br />
+                                    같이 코딩해요<br /><br />
+                                    다같이 파이팅~~!
+                                </div>
+                                <div className='roominfo-info-person'>
+                                    {"(조인테이블에서 인원구해오기)명"}/    {roomInforma.population}
+                                </div>
+                            </div>
+                            {/* 방장이면 */}
 
-                    <div className='roominfo-info-outer'>
-                        <div className='roominfo-info-inner'>
-                            <h1>{roomInforma.title}</h1>
-                            <div>
-                                코딩해야지 코딩해야지 반복하다 <br />
-                                결국 자버리는 분들 <br /><br />
-                                같이 코딩해요<br /><br />
-                                다같이 파이팅~~!
+                            {/* <div className='roominfo-change-room-info'>
+                            <button>모각코 방 정보 변경</button>
+                            </div> */}
+                            <button className='roominfo-change-room-info'>모각코 방 정보 변경</button>
+                            </div>
                         </div>
                     </div>
-                    <div className='roominfo-info-person'>
-                            {"(조인테이블에서 인원구해오기)명"}/{roomInforma.population}
-                    </div>
                 </div>
-                    {/* 방장이면 */}
-
-                    {/* <div className='roominfo-change-room-info'>
-                        <button>모각코 방 정보 변경</button>
-                    </div> */}
-                    <button className='roominfo-change-room-info'>모각코 방 정보 변경</button>
-
-            </div>
-
-            </div>
-            <div className='roominfo-user-list'>
-                
-                <div className='user-item'>
-                    <div className='roominfo-user-list-title'>모임 구성원</div>
-                    {userInfo.map((user, i) => {
-                        const { image, username, blog } = user;
+                <div className='roominfo-user-list'>
+                    <div className='user-item'>
+                        <div className='roominfo-user-list-title'>모임 구성원</div>
+                        {userInfo.map((user, i) => {
+                            const { image, username, blog } = user;
                         // console.log(image, username, blog);
-                        return (<div key={i}>
-                            <UserList image={image} username={username} blog={blog} />
-                        </div>
-                        )
-                    })}
+                            return (<div key={i}>
+                                <UserList image={image} username={username} blog={blog} />
+                            </div>
+                            )
+                        })}
+                    </div>
+                    <button className='roominfo-exit-room'>모각코 나가기</button>
                 </div>
-                <button className='roominfo-exit-room'>모각코 나가기</button>
             </div>
         </div>
     )

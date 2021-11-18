@@ -7,183 +7,73 @@
     margin: 0;
     padding: 0;
 }
+@font-face {
+    font-family: DungGeunMo;
+    src: url("../static/fonts/DungGeunMo.ttf");
+}
+
+.roominfo-background{
+    background-image: url(../images/bg_candidate.png);
+    /* background-image: url(../images/roominfo_list.png); */
+    /* background-image: url(../images/bg_candidate2.jpg); */
+    background-repeat: no-repeat;
+    background-size: 200%;
+    background-position: right;
+    padding: 0 50px;
+}
 
 .roominfo-container {
-    height: 90%;
-    border: 1px whitesmoke solid;
+
 }
 .roominfo-page {
-    border: 1px whitesmoke solid;
-    border-bottom: whitesmoke;
     display: flex;
     flex-direction: column;
-    background:whitesmoke;
     position : relative;
-    top:50px;
-    height : 50rem;
-    margin-left:100px;
-    margin-right: 2rem;
-    margin-bottom: 0rem;
     align-items: center;
-    
+    margin-top: 30px;
 }
-.roominfo-page .roominfo-map {
-    border: 1px whitesmoke solid;
-    background:rgb(135, 195, 222);
+.roominfo-map {
     /* position : sticky; */
-    top : 50px;
     width:100%;
-    height : 28%;
+    height : 50%;
     
 }
 .roominfo-page .roominfo-info-div {
-    border: 1px solid;
-    border-color:whitesmoke;
-    background:rgb(56, 139, 187);
     /* margin-left: 20rem;
     margin-right: 20rem; */
-    margin-top: 3rem;
-    
-    width: 60%;
-    height : 30rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.roominfo-page .roominfo-info-div .roominfo-meeting-time {
-    border: 1px gray solid;
-    background: rgb(135, 195, 222);
-    width : 500px;
-    height: 50px;
-    margin-top: 20px;
-    margin-bottom: 3rem;;
-    padding-top:10px;
-    text-align: center;
 
-}
-
-.roominfo-page .roominfo-info-div .roominfo-info-outer {
-   
-    width : 600px;
-    height: 320px;
-    margin:0;
-    
-    /* margin-bottom: 0rem; */
-    padding: 0;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* justify-content: stretch; */
-}
-
-.roominfo-page .roominfo-info-div .roominfo-info-outer .roominfo-info-inner {
-    /* padding:0;
-    margin:0; */
-    border: 1px gray solid;
-    background: rgb(135, 195, 222);
-    width : 500px;
-    height: 300px;
-    margin: 0;
-    /* overflow-y: auto; */
-    text-align: center;
-}
-
-.roominfo-page .roominfo-info-div .roominfo-info-person {
-    border: 1px gray solid;
-    background: rgb(135, 195, 222);
-    width:100px;
-    /* height:40px; */
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    text-align: center;
-}
-
-.roominfo-page .roominfo-info-div .roominfo-change-room-info {
-   
-    
     width: 100%;
-    height: 4rem;
-    text-align: center;
-    /* display: flex; */
-    align-items: center;
-    /* justify-content: center; */
-}
-
-.roominfo-page .roominfo-info-div .roominfo-change-room-info{
-    border: gray;
-    background-color:rgb(27, 83, 121);
-    width : 100%;
-    height: 100%;
-}
-
-.roominfo-page .roominfo-info-div .roominfo-change-room-info:hover {
-    background-color:rgb(16, 19, 59);
-    color: white;
-    width : 100%;
-    height: 100%;
-}
-
-.roominfo-user-list {
-    padding:0;
-    border: 1px whitesmoke solid;
-    border-top: whitesmoke;
-    background: whitesmoke;
-    position : relative;
-    top:50px;
-    height:50rem;
+    height : 30em;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left:100px;
-    margin-right: 2rem;
-    /* margin-bottom: 0rem; */
+    margin-bottom: 13px;
 }
-
-.roominfo-user-list .user-item {
-   border: 1px gray solid;
-   padding: 4rem 0rem 4rem 0rem;
-   background-color: rgb(56, 139, 187);
-   /* width: 800px; */
-   width: 60%;
-   /* margin-left: 20rem;
-   margin-right: 20rem; */
-   display: flex;
-   flex-direction: column;
-   justify-content:space-between;
-   align-items: center;
-   
+.roominfo-info-div .roominfo-info-box{
+    width: 568.9px;
+    height: 566.28px;
+    padding: 22px 21px 158px;
+    background-image: url(../images/desktop_mockup.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    top: 0;
+    left: 0;
 }
-
-.roominfo-user-list .user-item .roominfo-user-list-title {
-    background: rgb(56, 139, 187);
-    margin-top: 0;
-    margin-bottom: 1rem;
-    height: 3rem;
-    font-size:x-large;
-    font-weight:500;
-}
-
-.roominfo-user-list .user-item div {
-    margin:0;
-    padding: 0;
-    background-color: rgb(135, 195, 222);
-   
- }
-.roominfo-user-list .roominfo-exit-room {
-    padding: 0 4rem 0 4rem;
-    margin: 0;
-    width: 60%;
-    height: 4rem;
-
-    border: 1px gray solid;
-    background: rgb(27, 83, 121);
-    margin-bottom:100px;
-}
-
-.roominfo-user-list .roominfo-exit-room:hover {
-    background-color:rgb(16, 19, 59);
-    color: white;
-}
+.blue-screen{background: #000082; width: 100%; height: 100%; padding-left: 8px; border-radius: 5px;}
+.roominfo-page .roominfo-info-div h2{ color: #fff; display: block; text-align: left; padding: 8px 0 0; font-family: DungGeunMo; font-size: 20px;}
+.roominfo-page .roominfo-info-div .roominfo-info-outer{margin-top: 8px}
+.roominfo-page .roominfo-info-div .roominfo-info-outer>p{color: #fff; font-family: DungGeunMo;}
+.roominfo-page .roominfo-info-div .roominfo-info-outer{}
+.roominfo-page .roominfo-info-div .roominfo-info-outer .roominfo-description{color: #fff; font-family: DungGeunMo;}
+.roominfo-page .roominfo-info-div .roominfo-info-outer .roominfo-info-person{color: #fff; font-family: DungGeunMo; text-align: center; margin-bottom: 12px;}
+.roominfo-page .roominfo-info-div .roominfo-change-room-info{color: #fff; font-family: DungGeunMo; border: 2px dashed #fff; display: block; margin: 0 auto; padding: 3px 5px}
+.roominfo-page .roominfo-info-div .roominfo-change-room-info:hover{border: 2px dashed #999; ; color: #999;}
+.roominfo-page .roominfo-info-div .roominfo-change-room-info{}
+.roominfo-user-list{width: 100%; background: #16151575; padding: 20px;}
+.roominfo-user-list .roominfo-user-list-title{margin-left: 20px;  color: #fff; font-size: 22px; font-weight: 600;}
+.roominfo-user-list .user-item{}
+.roominfo-user-list .user-item .roominfo-user-list-timtle{}
+.roominfo-user-list .user-item .roominfo-user-list-timtle{}
+.roominfo-user-list .roominfo-exit-room{margin: 0 auto; display: block; margin-top: 13px; background: #706d6dbb; color: #fff; padding: 5px 5px;}

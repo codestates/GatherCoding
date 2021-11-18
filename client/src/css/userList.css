@@ -1,6 +1,5 @@
 .userlist-page {
-    z-index: -8;
-    background: rgb(47, 192, 78);
+    background: #706d6dbb;
     display: flex;
     margin-left: auto;
     margin-right: auto;
@@ -8,9 +7,8 @@
     height: 100px;
     width: 600px;
     /* padding: 10px; */
-    font-size: large;
-    border: 1px gray solid;
 }
+.userlist-page:hover{background: #beb8b8bb;}
 .userlist-page .userlist-profile {
     
     width:100px;
