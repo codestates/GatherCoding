@@ -2,13 +2,17 @@ import React from 'react'
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from "axios";
-import { isLoginHandler, isShowRoomOutModalHandler } from '../redux/actions/actions';
+import { isShowRoomOutModalHandler } from '../redux/actions/actions';
+import { useCookies } from 'react-cookie';
 
 import '../css/roomOutModal.css'
 
 function RoomOutModal() {
     const dispatch = useDispatch()
-
+    const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
+    const id = useSelector((state) => state);
+    console.log('ididid', id);
+    // console.log('뜸?', roomInforma);
     // const [loginId, setLoginId] = useState('');
     // const [loginPw, setLoginPw] = useState('')
 
@@ -18,30 +22,23 @@ function RoomOutModal() {
         e.preventDefault();
 
         const body = {
-
             // email: loginId,
             // password: loginPw,
-            id: 'dummyId',
-            title: 'dummyTitle',
-            headrs: {
-                'contente-type': 'application/json'
-            }
+            // id,
+            // title
         }
-        // API가 조금 수정되어야 할 듯. 
-        // delete 메소드 -> put 메소드
-        // delete-room -> room-exit
         // response 적절하게 추가
-        axios.delete(`https://localhost:4000/rooms/delete-room`, body)
-            .then(res => {
-                if (res.status === 200) { // 잘받아오면
-                    // dispatch()
-                    // ???
-                }
-            }).catch(err => {
-                if (err) {
-                    // 실패했다고 떠야 될 듯. alert 같은 것으로?
-                }
-            })
+        axios.patch(`https://localhost:4000/rooms/room-exit`, body, {
+            withCredentials: true,
+            headers: { 'contente-type': 'application/json', 
+                Authorization : `Bearer ${cookies.accessToken}` 
+            }
+        })
+        .then(res => {
+            console.log('왔냐?');
+        }).catch(err => {
+            console.log('실패..');
+        })
     }
 
     return (
@@ -57,7 +54,7 @@ function RoomOutModal() {
                 <h2>모임방을 나가시겠습니까?</h2>
                 <div className="room-out-modal-form">
                     <div>
-                        <button className="yes-btn" onClick={roomOutRequest}>예</button>
+                        <button className="yes-btn" onClick={(e) => roomOutRequest(e)}>예</button>
                     </div>
                     <div>
                         <button className="no-btn" onClick={closeRoomOutModalHandler}>아니요</button>

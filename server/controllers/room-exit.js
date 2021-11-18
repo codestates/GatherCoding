@@ -36,8 +36,11 @@ const UserGroup = require('../models/user_group');
 
 module.exports = {
     patch: async (req, res) => {
-        const userId = req.body.email;
+        const accessToken = req.headers.Authorization.split(' ')[1];
+        const userData = token.isAuthorized(accessToken)
+        const userId = userData.email;
         const roomTitle = req.body.title;
+        console.log(roomTitle);
         const selectedGroup = await group.findOne({
             where: {
                 title: roomTitle
