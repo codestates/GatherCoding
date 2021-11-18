@@ -10,13 +10,16 @@ import MapContainer from '../components/MapContainer';
 import axios from 'axios';
 import { withCookies, Cookies, useCookies } from 'react-cookie';
 import MapInRoom from '../components/kakao/map/MapInRoom';
+import { isShowRoomOutModalHandler } from '../redux/actions/actions';
 import { isShowRoomInModalHandler } from '../redux/actions/actions';
 
 function RoomInfo({ match }) {
     // console.log(roomId)
+    const dispatch = useDispatch()
     const {id} = match.params
     const roomId = parseInt(id,10)
     const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
+
     const [roomInforma,setRoomInforma] = useState({})
     const [userInfo,setUserInfo] = useState([])
     // console.log(cookies)
@@ -40,6 +43,10 @@ function RoomInfo({ match }) {
             headers:{contentType:"application/json",withCredentials:"true",Authorization : `Bearer ${cookies.accessToken}`}
         }
         ).then(res=>{
+            const {UserId,city,description,id,leader_id,meeting_place,meeting_time,population,region,title} = res.data.data
+            const roomInformation = {UserId,city,description,id,leader_id,meeting_place,meeting_time,population,region,title}
+            setRoomInforam(roomInformation)
+            // console.log('informa?', roomInforma)
             console.log(res.data.data.title)
             // const {UserId,city,description,id,leader_id,meeting_place,meeting_time,population,region,title} = res.data.data
             // const roomInformation = {UserId,city,description,id,leader_id,meeting_place,meeting_time,population,region,title}
@@ -59,6 +66,9 @@ function RoomInfo({ match }) {
 
     }, [pathname]);
 
+    const showRoomOutHandler = () => {
+        dispatch(isShowRoomOutModalHandler(true));
+    }
     const roomInRequest = function() {
         dispatch(isShowRoomInModalHandler(true));
     }
@@ -115,8 +125,7 @@ function RoomInfo({ match }) {
                             </div>)
                     })} */}
                 </div>
-                
-                <button className='roominfo-exit-room'>모각코 나가기</button>
+                <button className='roominfo-exit-room' onClick={showRoomOutHandler} >모각코 나가기</button>
                 <button className='roominfo-enter-room' onClick={roomInRequest}>모각코 참여하기</button>
             </div>
         </div>

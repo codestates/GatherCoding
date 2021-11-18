@@ -35,7 +35,7 @@ app.use(
     methods: ["GET", "POST", "OPTIONS", "DELETE", "PUT", "PATCH"],
   })
 );
-app.use(cookieParser());
+app.use(cookieParser({ sameSite: "none", secure: true }));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
