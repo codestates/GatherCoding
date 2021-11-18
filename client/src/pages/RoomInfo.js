@@ -31,7 +31,7 @@ function RoomInfo({ match }) {
     const currentUserList = useSelector(state => state.currentUserListReducer);
     console.log(currentUserList);
     const { pathname } = useLocation();
-    const dispatch = useDispatch();
+    
 
     useEffect(() => {
         // 페이지 이동시 스크롤 맨 위로 오게한다.
@@ -45,7 +45,7 @@ function RoomInfo({ match }) {
         ).then(res=>{
             const {UserId,city,description,id,leader_id,meeting_place,meeting_time,population,region,title} = res.data.data
             const roomInformation = {UserId,city,description,id,leader_id,meeting_place,meeting_time,population,region,title}
-            setRoomInforam(roomInformation)
+            setRoomInforma(roomInformation)
             // console.log('informa?', roomInforma)
             console.log(res.data.data.title)
             // const {UserId,city,description,id,leader_id,meeting_place,meeting_time,population,region,title} = res.data.data
@@ -58,6 +58,7 @@ function RoomInfo({ match }) {
             {roomTitle:title},
             {headers:{withCredentials:"true", Authorization : `Bearer ${cookies.accessToken}`, contentType:"application/json"}}
             ).then(res=>{
+                
                 setUserInfo(res.data.data)
 
         

@@ -38,7 +38,7 @@ function HomeLogined() {
                     console.log(res.data.data)
                     axios.get('http://localhost:4000/users/userinfo',{withCredentials : true})
                     .then(res => {
-                        
+                        console.log(res.data)
                         setUserName(res.data.data.username)
                         
                     })
