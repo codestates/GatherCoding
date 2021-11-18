@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import { useLocation } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector ,useDispatch} from 'react-redux';
 import '../css/roominfo.css';
 import { userInfo } from '../components/dummy'
 import UserList from '../components/UserList';
@@ -9,6 +9,8 @@ import MapContainer from '../components/MapContainer';
 import axios from 'axios';
 import { withCookies, Cookies, useCookies } from 'react-cookie';
 import MapInRoom from '../components/kakao/map/MapInRoom';
+
+import { isShowRoomOutModalHandler,isShowRoomInModalHandler } from '../redux/actions/actions';
 
 function RoomInfo({ match }) {
     // console.log(roomId)
@@ -19,7 +21,7 @@ function RoomInfo({ match }) {
     console.log(cookies)
     console.log('JWT : ',cookies.jwt)
     console.log('액세스토큰 : ', cookies.accessToken)
-
+    const dispatch = useDispatch();
     const isLogin = useSelector(state => state.isLoginReducer.isLogin)
     const { pathname } = useLocation();
     useEffect(() => {
@@ -39,6 +41,15 @@ function RoomInfo({ match }) {
         })
 
     }, [pathname]);
+    //
+
+    const showRoomOutHandler = () => {
+        dispatch(isShowRoomOutModalHandler(true));
+    }
+    const roomInRequest = function() {
+        dispatch(isShowRoomInModalHandler(true));
+    }
+    console.log(roomInforma.title)
     return (
         <div className="roominfo-background">
             <div className="roominfo-container">

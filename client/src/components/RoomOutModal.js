@@ -20,7 +20,7 @@ function RoomOutModal() {
 
     function roomOutRequest(e) { // 방 나가기 요청 함수
         e.preventDefault();
-
+//1. axios.
         const body = {
             // email: loginId,
             // password: loginPw,
