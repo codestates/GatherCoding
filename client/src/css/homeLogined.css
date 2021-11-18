@@ -5,7 +5,7 @@
   
 .homeLogined-page {
     /* background : url('https://user-images.githubusercontent.com/75051059/141219381-c64490bf-907d-4929-8b1b-ad7891604a58.png'); */
-    background-color: aquamarine;
+    background-color: #629cd4;
     position : relative;
     /* top:50px; */
     height : 100vh;
@@ -15,11 +15,10 @@
 }
 /* 버튼 호버 */
 
-button:hover {
-    
+/* .homeLogined-page button:hover {
     cursor: pointer;
     background-color: rgba(0,0,0,0.1);
-}
+} */
 
 
 .homeLogined-body {
