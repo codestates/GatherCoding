@@ -23,7 +23,7 @@ module.exports = {
                 title: roomTitle
             }
         })
-        
+        console.log('아자자자자차차차ㅏ',selectedRoom)
         console.log('방넘버',selectedRoom.dataValues);
         // res.json("success");
         if (!newMember) {
