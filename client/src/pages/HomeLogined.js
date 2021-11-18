@@ -62,7 +62,7 @@ function HomeLogined() {
                         {userName}님이 참가하고 계신 모각코 모임입니다.
                     </div>
                     <div className = '.common-room-component-list'>
-                        {myRoomList
+                    {myRoomList!==null ? myRoomList.filter(el=>el.city===city&&el.region===region)
                         .map((group,idx) => {
                             return (
                                 <div className = 'common-room-box' key = {idx} >
@@ -71,9 +71,10 @@ function HomeLogined() {
                             }
                                 </div>
                             )
-                        })}
-                        
-
+                        })
+                    :
+                    <div></div>
+                    }
                     </div>
                 </div>
             </div>

@@ -66,6 +66,7 @@ function RoomInfo({ match }) {
         })
 
     }, [pathname]);
+    //
 
     const showRoomOutHandler = () => {
         dispatch(isShowRoomOutModalHandler(true));
