@@ -2,7 +2,7 @@
 // express, 네트워크, 라우터 관련 변수 선언
 //-----------------------------------------------
 
-// require("dotenv").config();
+require("dotenv").config();
 
 const express = require('express')
 const app = express()
@@ -35,7 +35,8 @@ app.use(
     methods: ["GET", "POST", "OPTIONS", "DELETE", "PUT", "PATCH"],
   })
 );
-app.use(cookieParser({ sameSite: "none", secure: true }));
+// app.use(cookieParser({ sameSite: "none", secure: true }));
+app.use(cookieParser())
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

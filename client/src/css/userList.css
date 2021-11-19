@@ -1,6 +1,5 @@
 .userlist-page {
     background: #706d6dbb;
-    z-index: -8;
     display: flex;
     margin-left: auto;
     margin-right: auto;
@@ -9,7 +8,7 @@
     width: 600px;
     /* padding: 10px; */
 }
-.userlist-page:hover{background: #beb8b8bb;}
+.userlist-page:hover{background: #978686bb;}
 .userlist-page .userlist-profile {
     
     width:100px;
@@ -20,15 +19,11 @@
 }
 .userlist-page img {
     
-    background:url('../images/default_profile2.png') center no-repeat ;
-    background: cover;
-
-
     border-radius:70%;
     width: 100px;
     height: 100%;
     margin: auto;
-    object-fit: cover;
+    
 }
 
 .userlist-page .userlist-username {

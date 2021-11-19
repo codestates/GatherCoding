@@ -47,4 +47,4 @@ header .header-right button {
     transition: all .3s;
 }
 
-header .header-right button:hover{margin-top: 10px;}
+header .header-right button:hover{margin-top: 5px;}

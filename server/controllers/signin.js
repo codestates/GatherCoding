@@ -15,7 +15,7 @@ module.exports = {
                 // console.log(data.username);
                 const accessToken = token.generateAccessToken(data.toJSON()); 
                 const username = data.username;
-                console.log(accessToken);
+                // console.log(accessToken);
                 // res.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true });
                 // ! 토큰은 무조건 쿠키로 전달
                 res.cookie("accessToken", accessToken); // {data: {accessToken: accessToken}} 에서 쿠키로 전달로 수정
