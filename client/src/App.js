@@ -47,7 +47,7 @@ import { withCookies, Cookies, useCookies } from 'react-cookie';
 import RoomPage from './pages/RoomPage';
 
 function App() {
-  console.log(window.sessionStorage.getItem('email'))
+  // console.log(window.sessionStorage.getItem('email'))
   const isLogin = useSelector(state => state.isLoginReducer.isLogin)
   const isShowLoginModal = useSelector(state => state.isShowLoginModalReducer.isShowLoginModal)
   const isShowSignUpModal = useSelector(state => state.isShowSignUpModalReducer.isShowSignUpModal)
@@ -69,9 +69,9 @@ function App() {
   // !  2. cookies는 쿠키(name : value)들을 모아놓은 javascript object이다.
   
   const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
-  console.log(cookies)
-  console.log('JWT : ',cookies.jwt)
-  console.log('액세스토큰 : ', cookies.jwt)
+  // console.log(cookies)
+  // console.log('JWT : ',cookies.jwt)
+  // console.log('액세스토큰 : ', cookies.jwt)
   // !
   // const realLoginHandler = (boolean) => { // 로그인 상태 기능
   //   
@@ -84,7 +84,7 @@ function App() {
 
   useEffect(() => {
     // curLoginedId(window.sessionStorage.getItem('email'))
-    console.log(curLoginId)
+    // console.log(curLoginId)
     maintainLogin()
   })
 
@@ -121,17 +121,19 @@ function App() {
   function onGeoOk(position){
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
-    console.log(typeof lat,lon )
+    // console.log(typeof lat,lon )
     dispatch(changeLon(lon))
     dispatch(changeLat(lat))
-    console.log('axios진입전')
+    // console.log('axios진입전')
+    // ? : 유저의 좌표를 주소로 변환하는 카카오 API
+    
     axios.get(`https://dapi.kakao.com/v2/local/geo/coord2address.json?x=${lon}&y=${lat}&input_coord=WGS84`
     ,{headers:{Authorization:`KakaoAK ${process.env.REACT_APP_REST_API}`}}
     )
     .then(res=>{
-        console.log(res)
+        // console.log(res)
         console.log('JWT : ',cookies.jwt)
-        console.log('액세스토큰 : ', cookies.jwt)
+        console.log('액세스토큰 : ', cookies.accessToken)
         // dispatch(setAccessToken(cookies.accessToken))
         
         dispatch(changeAddress(res.data.documents[0].address.address_name))
@@ -141,12 +143,19 @@ function App() {
         
     })
     .then(res=>{
+      console.log(isLogin,cookies.accessToken)
+      // ?     2. DB에 유저의 주소 저장
+      if(isLogin){
       axios.post('http://localhost:4000/users/location-registration',{
           region,city
           //! 3 .headers의 Authorization 에 accessToken을 넣어준다.
         },{headers:{withCredentials:"true",Authorization : `Bearer ${cookies.accessToken}`, contentType:"application/json"}}
         )
-    }).then(res=>console.log(res))
+      }else {
+        console.log('로긴해주세요')
+      }
+    })
+    // .then(res=>console.log(res))
     .catch(e=>console.log(e))
   }
   function onGeoError(){
@@ -222,7 +231,7 @@ function App() {
         <Route path = '/roominfo/:id' component={RoomInfo}></Route>        
         <Route path = '/myinfo'><MyInfo /></Route>
       </Switch>
-      {console.log('모각코만들기모달',isShowCreateRoomModal)}
+      {/* {console.log('모각코만들기모달',isShowCreateRoomModal)} */}
       {isShowLoginModal ? <LoginModal /> : null}
       {isShowSignUpModal ? <SignUpModal /> : null}
       {isShowRoomOutModal ? <RoomOutModal /> : null}

@@ -47,9 +47,9 @@ const Map = ({ title ,meetingTime ,population, description }) => {
   // !  2. cookies는 쿠키(name : value)들을 모아놓은 javascript object이다.
   
   const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
-  console.log(cookies)
-  console.log('JWT : ',cookies.jwt)
-  console.log('액세스토큰 : ', cookies.accessToken)
+  // console.log(cookies)
+  // console.log('JWT : ',cookies.jwt)
+  // console.log('액세스토큰 : ', cookies.accessToken)
   // !
 
 
@@ -87,8 +87,11 @@ const Map = ({ title ,meetingTime ,population, description }) => {
 
 
   useEffect(() => {
-    console.log('만들기클릭했니?',createdRoom)
+    console.log(meetingPlace)
+    console.log('방만들기 상태',createdRoom)
+    // ? 만들기 버튼이 눌리면 클릭한 지점의 주소를 방의 주소로 DB에 저장한다.
     if(createdRoom===true){
+      console.log('방만들기 상태',createdRoom)
       axios.post('http://localhost:4000/rooms/new-room',{
         title ,population, description,
         meeting_time : meetingTime,
@@ -122,9 +125,9 @@ const Map = ({ title ,meetingTime ,population, description }) => {
       }) 
       setCreatedRoom(false)
     }
-    console.log("effect")
+    // console.log("effect")
     const container = document.getElementById("map") //지도를 담을 영역의 DOM 레퍼런스
-    console.log('여기왔니')
+    // console.log('여기왔니')
     let options = {
       //지도를 생성할 때 필요한 기본 옵션
       center: new kakao.maps.LatLng(centerPosition[0],centerPosition[1]), //지도의 중심좌표.
@@ -139,16 +142,8 @@ const Map = ({ title ,meetingTime ,population, description }) => {
       position: map.getCenter() 
     }); 
 
-
-    // var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
-    // // 마커를 생성합니다
-    //   var marker = new kakao.maps.Marker({
-    //     position: markerPosition,
-    //     clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
-    // });
-    // 마커가 지도 위에 표시되도록 설정합니다
     marker.setMap(map);
-    
+   // ? 마커위에 도로명주소 표시
 var iwContent = '<div style="padding:5px;"> <a href = "http://localhost:3000/roominfo">' + meetingPlace[2] + '</a> <br/></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
     iwPosition = new kakao.maps.LatLng(lat,lon); //인포윈도우 표시 위치입니다
     // iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
@@ -166,62 +161,36 @@ infowindow.open(map, marker);
 kakao.maps.event.addListener(marker, 'click', function() {
   infowindow.open(map, marker); 
   console.log('hello')
-    //  axios.post('http://localhost:4000/rooms/new-room',{
-    //     title ,meetingTime ,population, description,
-    //     region:meetingPlace[0],
-    //     city : meetingPlace[1],
-    //     UserId : userInfo[0].id,
-    //     meetingPlace:meetingPlace[2]
-    //   },{
-    //       headers:{contentType:"application/json",withCredentials:"true",Authorization : `Bearer ${cookies.accessToken}`}
-    //     }).then(res=>console.log(res))
 
 });
-// // ! 마우스 올리면 메시지 보임->지도먼저 보이고-> 방정보 생성으로 가자
-// function displayInfowindow(marker, title) {
-//   var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
 
-//   infowindow.setContent(content);
-//   infowindow.open(map, marker);
-// }
-// kakao.maps.event.addListener(marker, 'mouseover', function() {
-//   displayInfowindow(marker, '마커를 클릭하면 방이 생성됩니다.');
-// });
-// * 마우스 내리면 메시지 사라짐
-// kakao.maps.event.addListener(marker, 'mouseout', function() {
-//   infowindow.close();
-// });
-// * 맵에 클릭이벤트 등록
+// ? 맵에 클릭이벤트 등록
 kakao.maps.event.addListener(map, 'click', function(mouseEvent) {       
   
   //* infowindow 생성
   infowindow.open(map, marker);  
-  // * 클릭한 위도, 경도 정보를 가져옵니다 
+  // ? 클릭한 위도, 경도 정보를 가져옵니다 
   var latlng = mouseEvent.latLng; 
   console.log(latlng.La, latlng.Ma)
-  //*  마커 위치를 클릭한 위치로 옮깁니다
+  //?  마커 위치를 클릭한 위치로 옮깁니다
   marker.setPosition(latlng);
   
-  //* infowindow 마커위에 생성
+  //*?infowindow 마커위에 생성
   infowindow.setPosition(latlng)
-  console.log('도착')
-  // const newLatLng = new kakao.maps.LatLng(latlng.La, latlng.Ma)
-  // map.panTo(newLatLng)
-  // !
+  // console.log('도착')
 
   setCenterPosition([latlng.getLat(),latlng.getLng()])
-  //* 좌표를 주소로 변환
+  // ?  좌표를 주소로 변환 -> 버튼 클릭시 onClick이벤트를 통해 91번줄로 이동
   axios.get(`https://dapi.kakao.com/v2/local/geo/coord2address.json?x=${latlng.getLng()}&y=${latlng.getLat()}&input_coord=WGS84`
     ,{headers:{Authorization:`KakaoAK ${process.env.REACT_APP_REST_API}`}}
     )
     .then(res=>res.data.documents[0].address)
     .then((address)=>{
-      // const {address_name,region_2depth_name,region_1depth_name} = address
-      // const metad = {meetRegion : address_name, meetCity:region_2depth_name,meetAdd : region_1depth_name}
       setMeetingPlace([address.region_1depth_name,address.region_2depth_name,address.address_name])
-      console.log(meetingPlace)
+      
       return false
     })
+    // .then(res=>console.log(meetingPlace))
     .catch(err=>console.log(err))  
 });
     
@@ -231,36 +200,8 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 
 
   const sendRoomInfo = (e) => {
-    console.log(meetingPlace)
+    // console.log(meetingPlace)
     setCreatedRoom(true)
-    // console.log(createdRoom)
-    // axios.post('http://localhost:4000/rooms/new-room',{
-    //     title ,meetingTime ,population, description,
-    //     region:meetingPlace[0],
-    //     city : meetingPlace[1],
-    //     UserId : userInfo[0].id,
-    //     meetingPlace:meetingPlace[2]
-    //   },{
-    //       headers:{contentType:"application/json",withCredentials:"true",Authorization : `Bearer ${cookies.accessToken}`}
-    //     })
-    //     .then(res=>{
-          
-    //       dispatch(isLoadingHandler(true))
-          
-    //       // history.push("/roominfo")
-    //       // dispatch(isShowCreateRoomModalHandler(false))
-    //       // console.log(res)
-    //     })
-    //     .then(res=>{
-    //       axios.get('http://localhost:4000/rooms/new-room',
-    //         {headers:{withCredentials:"true",Authorization : `Bearer ${cookies.accessToken}`, contentType:"application/json"}}
-    //     ).then(res=>{
-    //       console.log(res.data)
-    //     })
-    //     dispatch(isLoadingHandler(false))
-    //   })
-      
-
   }
 
   return (

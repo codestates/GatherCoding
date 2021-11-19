@@ -25,10 +25,11 @@ function RoomListPage() {
     const [myRoomList,setMyRoomList] = useState([])
     // console.log(region,city)
    useEffect(()=>{
+       if(isLogin){
        axios.get(`http://localhost:4000/rooms/local-room-list/`,
        {params:{city:city,region:region}}).then(res=>{
            setMyRoomList(res.data.data)
-       })
+       })}
    },[region,city])
     
     return (

@@ -6,7 +6,9 @@ const { isAuthorized } = require('./token');
 module.exports = {
     post: async (req, res) => {
         const accessToken = req.headers.authorization.split(' ')[1];
-        console.log(req.cookies, 'room-entry확인용');
+        
+        
+        // console.log(req.cookies, 'room-entry확인용');
         // const accessToken = req.body.accessToken;
         const roomTitle = req.body.roomTitle;
 

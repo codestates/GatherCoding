@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import axios from "axios";
 import CheckSignMsg from '../components/CheckSignMsg'
 import UpdateModal from '../components/UpdateModal'
@@ -28,7 +29,7 @@ function MyInfo() {
 //     <input name="image" className="input-blind" ref={inputValue} type="file" onChange={(e) => inputFileHandler(inputValue, setSignUpImage)}/>
 //     {signUpImage ? <div className="img_preview" onClick={(e) => inputBtn(e, inputValue)} style={{ backgroundImage: `url('${URL.createObjectURL(signUpImage) }')`}}
 //   ></div>: <div className="img_preview" onClick={(e) => inputBtn(e, inputValue)}></div>} 끼에에에에에엑 사용할듯
-
+    const history = useHistory()
     useEffect(() => {
         /*const curUser = window.sessionStorage.getItem('email');*/
         // 로딩 넣으면 좋을듯
@@ -46,6 +47,7 @@ function MyInfo() {
             .catch(err => {
                 console.log('fail')// 에러창을 추후에 만들면 좋을듯 싶음
             })
+
     }, [])
 
     function conditionPassword(updatePw) { // 숫자, 영문, 특수문자 각 1자리 이상이면서 8자에서 16자 사이 통과
@@ -116,7 +118,8 @@ function MyInfo() {
                 console.log('유저 정보 업데이트 성공')
                 setSucUpdate(true)
                 setShowUpdateModal(true)
-            })
+                // !
+            }).then(res=> history.push('/'))
             .catch(err => {
                 console.log('fail')// 에러창을 추후에 만들면 좋을듯 싶음
                 setSucUpdate(false)
